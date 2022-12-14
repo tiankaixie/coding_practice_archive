@@ -93,11 +93,35 @@ def back_tracking(arr: List[int]) -> List[List[int]]:
 
     dfs([], set())
     return res
+
+
 # <<< end [basic-3] back tracking
 
 
 # >>> start [basic-4] union find
-def union_find():
-    pass
-# >>> start [basic-4] union find
+def union_find(connections: List[List[int]], n: int) -> int:
+    parent = [-1] * n
 
+    def find(i: int) -> int:
+        if parent[i] == -1:
+            return i
+        return find(parent[i])
+
+    def union(i: int, j: int):
+        parent_i = find(i)
+        parent_j = find(j)
+        if parent_i != parent_j:
+            parent[j] = parent_i
+
+    for c in connections:
+        union(c[1], c[0])
+
+    res = 0
+    for i in range(n):
+        if parent[i] == -1:
+            res += 1
+
+    return res
+
+
+# >>> start [basic-4] union find

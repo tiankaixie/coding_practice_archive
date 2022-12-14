@@ -24,3 +24,7 @@ def test_back_tracking():
         [3, 1, 2],
         [3, 2, 1],
     ]
+
+
+def test_union_find():
+    assert union_find([[2, 1], [4, 2], [3, 1], [6, 5], [7, 0]], 8) == 3
